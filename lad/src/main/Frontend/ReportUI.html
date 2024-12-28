@@ -3,72 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lost and Found System</title>
+    <title>Lost & Found</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Lost and Found System</h1>
-            <nav>
-                <button onclick="showSection('report-lost')">Report Lost Item</button>
-                <button onclick="showSection('report-found')">Report Found Item</button>
-                <button onclick="showSection('items-list')">View All Items</button>
-            </nav>
-        </header>
-
-        <main>
-            <section id="report-lost" class="hidden">
-                <h2>Report a Lost Item</h2>
-                <form id="lost-item-form">
-                    <label for="item-name">Item Name:</label>
-                    <input type="text" id="item-name" name="item-name" required>
-
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description" required></textarea>
-
-                    <label for="date-lost">Date Lost:</label>
-                    <input type="date" id="date-lost" name="date-lost" required>
-
-                    <label for="contact-info">Contact Information:</label>
-                    <input type="text" id="contact-info" name="contact-info" required>
-
-                    <button type="submit">Submit</button>
-                </form>
-            </section>
-
-            <section id="report-found" class="hidden">
-                <h2>Report a Found Item</h2>
-                <form id="found-item-form">
-                    <label for="found-item-name">Item Name:</label>
-                    <input type="text" id="found-item-name" name="found-item-name" required>
-
-                    <label for="found-description">Description:</label>
-                    <textarea id="found-description" name="found-description" required></textarea>
-
-                    <label for="date-found">Date Found:</label>
-                    <input type="date" id="date-found" name="date-found" required>
-
-                    <label for="contact-info-found">Contact Information:</label>
-                    <input type="text" id="contact-info-found" name="contact-info-found" required>
-
-                    <button type="submit">Submit</button>
-                </form>
-            </section>
-
-            <section id="items-list" class="hidden">
-                <h2>Items Reported</h2>
-                <ul id="items-list-ul">
-                    <!-- List of reported items will be displayed here -->
-                </ul>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2023 Lost and Found System</p>
-        </footer>
+        <div class="header">
+            <h1>Lost & Found</h1>
+            <div>
+                <button class="button">Log in</button>
+                <button class="button">Sign Up</button>
+            </div>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search for lost or found items...">
+        </div>
+        <div class="report-item">
+            <button class="lost-button" id="lost-button">Report Lost Items</button>
+            <button class="found-button" id="found-button">Report Found Items</button>
+            <button class="view-lost-button" id="view-lost-button">View Lost Items</button>
+            <button class="view-found-button" id="view-found-button">View Found Items</button>
+        </div>
+        <div class="categories" id="categories-container">
+            <div class="category" onclick="showItems('electronics')">Electronics</div>
+            <div class="category" onclick="showItems('clothing')">Clothing</div>
+            <div class="category" onclick="showItems('documents')">Documents</div>
+            <div class="category" onclick="showItems('other')">Other</div>
+        </div>
+        <div class="items-container" id="items-container">
+        </div>        
+        
+        <div class="footer">
+            <p>Contact us | Privacy Policy | Terms of Service</p>
+            <p>&copy; 2023 Lost & Found</p>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

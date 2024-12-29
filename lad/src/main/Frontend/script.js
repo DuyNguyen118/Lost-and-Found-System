@@ -7,14 +7,14 @@ function showSection(sectionId) {
 }
 
 function showItems(category) {
-    console.log(`Selected category: ${category}`); // Log the selected category
-    
+    console.log(`Selected category: ${category}`);
+
     const itemsContainer = document.getElementById('items-container');
     let itemsHTML = '';
 
     // Define items for each category
     const items = {
-        electronics: ['Laptop', 'Phone', 'Tablet'],
+        electronics: ['Laptop', 'Phone', 'Tablet', 'Headphone', 'Mouse', 'Samsung'],
         clothing: ['Shirt', 'Pants', 'Jacket'],
         documents: ['Passport', 'License', 'Certificates'],
         other: ['Backpack', 'Water Bottle', 'Miscellaneous Item']
@@ -24,9 +24,11 @@ function showItems(category) {
     if (items[category]) {
         itemsHTML = `<h2>${category.charAt(0).toUpperCase() + category.slice(1)}</h2>`;
         itemsHTML += '<div class="item-list">';
+
         items[category].forEach(item => {
-            itemsHTML += `<div class="item">${item}</div>`;
+            itemsHTML += `<div class="item ${category}">${item}</div>`;  // Add category class for styling
         });
+
         itemsHTML += '</div>';
     } else {
         itemsHTML = '<p>No items available in this category.</p>';

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (username.value === 'ITCSIU23006' && password.value ==='Xaz73158') {
             console.log('Credentials correct, attempting redirect');
-            window.location.href = '../Frontend/ReportUI.html';
+            window.location.href = '../Frontend/MainPage/ReportUI.html';
         } else {
             alert('Invalid username or password.');
         }

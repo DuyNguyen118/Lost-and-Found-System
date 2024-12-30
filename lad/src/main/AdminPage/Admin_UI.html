@@ -36,25 +36,8 @@
         <div id="merit-panel" class="panel active">
             <h2>Merit Point Management</h2>
             <button class="edit-button">Edit</button>
-           
         </div>
     </div>
-
-    <script>
-        const userBtn = document.getElementById('user-btn');
-        const meritBtn = document.getElementById('merit-btn');
-        const userPanel = document.getElementById('user-panel');
-        const meritPanel = document.getElementById('merit-panel');
-
-        userBtn.addEventListener('click', () => {
-            userPanel.classList.add('active');
-            meritPanel.classList.remove('active');
-        });
-
-        meritBtn.addEventListener('click', () => {
-            meritPanel.classList.add('active');
-            userPanel.classList.remove('active');
-        });
-    </script>
+    <script src="Adminscript.js"></script>
 </body>
 </html>

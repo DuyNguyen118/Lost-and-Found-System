@@ -12,10 +12,6 @@
     <div class="container">
         <div class="header">
             <h1>Lost & Found</h1>
-            <div>
-                <button class="button">Log in</button>
-                <button class="button">Sign Up</button>
-            </div>
         </div>
         <div class="search-box">
             <input type="text" placeholder="Search for lost or found items...">
@@ -23,17 +19,29 @@
         <div class="report-item">
             <button class="lost-button" id="lost-button">Report Lost Items</button>
             <button class="found-button" id="found-button">Report Found Items</button>
-            <button class="view-lost-button" id="view-lost-button">View Lost Items</button>
-            <button class="view-found-button" id="view-found-button">View Found Items</button>
         </div>
-        <div class="categories" id="categories-container">
-            <div class="category" onclick="showItems('electronics')">Electronics</div>
-            <div class="category" onclick="showItems('clothing')">Clothing</div>
-            <div class="category" onclick="showItems('documents')">Documents</div>
-            <div class="category" onclick="showItems('other')">Other</div>
+
+        <!-- Item List Section -->
+        <!-- Replace the item-list section with this -->
+        <div class="items-container" id="item-list-container">
+            <h2>Most Recent Lost Items</h2>
+                <div class="table-list">
+                    <div class="table-header">
+                        <div class="header-cell">Item Name</div>
+                        <div class="header-cell">Landmark</div>
+                        <div class="header-cell">Date Found</div>
+                        <div class="header-cell">Time Found</div>
+                    </div>
+                <div class="table-row">
+                        <div class="table-cell">BALLPEN</div>
+                        <div class="table-cell">UNIVERSITY MALL</div>
+                        <div class="table-cell">Sep 13, 2022</div>
+                        <div class="table-cell">10:00 AM</div>
+                </div>
+        <!-- Add more rows as needed -->
+            </div>
         </div>
-        <div class="items-container" id="items-container">
-        </div>        
+        
         
         <div class="footer">
             <p>Contact us | Privacy Policy | Terms of Service</p>

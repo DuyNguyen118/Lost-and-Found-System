@@ -1,0 +1,132 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lost-button,
+.found-button,
+.view-items-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #006600;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.report-item {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adds space between the two buttons */
+    margin: 20px 0; /* Adds margin above and below this section */
+    border-radius: 5px;
+}
+
+.search-box {
+    margin-right: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.news-feed {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.category {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+/* Remove or comment out the old .item-list styles */
+
+.table-list {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.table-header {
+    display: flex;
+    background-color: #006600;
+    color: white;
+    font-weight: bold;
+}
+
+.table-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+.header-cell, .table-cell {
+    flex: 1;
+    padding: 15px;
+    text-align: left;
+}
+
+.table-row:hover {
+    background-color: #f0f0f0;
+}
+
+.items-container h2 {
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
+}

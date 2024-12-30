@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Username element:', username);
         console.log('Password element:', password);
 
-        if (username.value === 'admin' && password.value === 'password') {
+        if (username.value === 'ITCSIU23006' && password.value ==='Xaz73158') {
             console.log('Credentials correct, attempting redirect');
             window.location.href = '../Frontend/ReportUI.html';
         } else {

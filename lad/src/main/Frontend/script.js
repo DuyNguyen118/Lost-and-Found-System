@@ -40,13 +40,14 @@ function showItems(category) {
     console.log('Updated items container:', itemsContainer.innerHTML);
 }
 
-document.getElementById('view-lost-button').addEventListener('click', () => {
+document.getElementById('lost-button').addEventListener('click', () => {
     console.log('Redirecting to report-lost.html');
-    window.location.href = 'report-lost.html';
+    window.location.href = '/lad/src/main/Frontend/report_lost.html';
 });
-document.getElementById('view-found-button').addEventListener('click', () => {
-    console.log('Redirecting to report-lost.html');
-    window.location.href = 'report-found.html';
+
+document.getElementById('found-button').addEventListener('click', () => {
+    console.log('Redirecting to report-found.html');
+    window.location.href = '/lad/src/main/Frontend/report_found.html';
 });
 
 

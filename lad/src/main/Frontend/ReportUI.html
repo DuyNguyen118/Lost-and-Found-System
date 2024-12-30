@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lost & Found</title>
     <link rel="stylesheet" href="ReportUIstyles.css">
+    <link rel="stylesheet" href="chatBot.css"
+    
 </head>
 <body>
     <div class="container">
@@ -38,6 +40,28 @@
             <p>&copy; 2023 Lost & Found</p>
         </div>
     </div>
+
+    <!-- Chatbot Section -->
+    <!-- Chatbot Section -->
+    <div id="chatbot-popup" class="chatbot-popup">
+        <div class="chatbot-header">
+            <span>Chat with us!</span>
+            <button id="close-chatbot" class="close-chatbot">X</button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chatbot-messages">
+                <div class="chatbot-message bot">Hello! How can I assist you?</div>
+            </div>
+            <input type="text" id="user-input" class="chatbot-input" placeholder="Type your message...">
+            <button id="send-message" class="send-message">Send</button>
+        </div>
+    </div>
+
+    <!-- Floating Chatbot Button -->
+    <button id="chatbot-btn" class="chatbot-btn">💬</button>
+
+
     <script src="script.js"></script>
+    <script src="chatBot.js"></script>
 </body>
 </html>

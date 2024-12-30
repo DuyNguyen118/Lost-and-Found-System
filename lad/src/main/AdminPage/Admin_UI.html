@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Interface</title>
+    <link rel="stylesheet" href="AdminUIstyles.css">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Lost & Found</h1>
+        <button id="user-btn">User</button>
+        <button id="merit-btn">Merit Point</button>
+    </div>
+
+    <div class="content">
+        <div id="user-panel" class="panel">
+            <h2>User Management</h2>
+            <button class="edit-button">Edit</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Merit Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+            </table>
+        </div>
+
+        <div id="merit-panel" class="panel active">
+            <h2>Merit Point Management</h2>
+            <button class="edit-button">Edit</button>
+           
+        </div>
+    </div>
+
+    <script>
+        const userBtn = document.getElementById('user-btn');
+        const meritBtn = document.getElementById('merit-btn');
+        const userPanel = document.getElementById('user-panel');
+        const meritPanel = document.getElementById('merit-panel');
+
+        userBtn.addEventListener('click', () => {
+            userPanel.classList.add('active');
+            meritPanel.classList.remove('active');
+        });
+
+        meritBtn.addEventListener('click', () => {
+            meritPanel.classList.add('active');
+            userPanel.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

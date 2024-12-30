@@ -6,14 +6,20 @@ const sendMessage = document.getElementById('send-message');
 const userInput = document.getElementById('user-input');
 const chatbotMessages = document.querySelector('.chatbot-messages');
 
-// Toggle the chatbot window
-chatbotBtn.addEventListener('click', () => {
-    chatbotPopup.style.display = 'flex';
-});
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatbotPopup = document.getElementById('chatbot-popup');
+    const closeBtn = document.querySelector('.close-chatbot');
 
-// Close the chatbot window
-closeChatbot.addEventListener('click', () => {
-    chatbotPopup.style.display = 'none';
+    chatbotBtn.addEventListener('click', () => {
+        chatbotPopup.style.display = 'flex';
+        chatbotBtn.style.display = 'none';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatbotPopup.style.display = 'none';
+        chatbotBtn.style.display = 'block';
+    });
 });
 
 // Handle sending a message

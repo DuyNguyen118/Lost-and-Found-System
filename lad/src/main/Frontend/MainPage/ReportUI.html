@@ -5,49 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lost & Found</title>
     <link rel="stylesheet" href="ReportUIstyles.css">
-    <link rel="stylesheet" href="chatBot.css"
+    <link rel="stylesheet" href="chatBot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Lost & Found</h1>
-        </div>
-        <div class="search-box">
-            <input type="text" placeholder="Search for lost or found items...">
-        </div>
-        <div class="report-item">
-            <button class="lost-button" id="lost-button">Report Lost Items</button>
-            <button class="found-button" id="found-button">Report Found Items</button>
-        </div>
-
-        <!-- Item List Section -->
-        <!-- Replace the item-list section with this -->
-        <div class="items-container" id="item-list-container">
-            <h2>Most Recent Lost Items</h2>
-                <div class="table-list">
-                    <div class="table-header">
-                        <div class="header-cell">Item Name</div>
-                        <div class="header-cell">Landmark</div>
-                        <div class="header-cell">Date Found</div>
-                        <div class="header-cell">Time Found</div>
+    <div class="full-width-background">
+        <div class="container">
+            <div class="head-panel">
+                <!-- Replace your User-info div with this -->
+                <div class="User-info">
+                    <button class="user-btn" onclick="toggleUserMenu()">
+                        <i class="fa fa-user"></i> <!-- You'll need Font Awesome for icons -->
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="user-header">
+                            <div class="user-avatar">👤</div>
+                            <h3>User Name</h3>
+                            <p>user@email.com</p>
+                        </div>
+                        <div class="user-menu">
+                            <a href="#profile"><i class="fa fa-user"></i> My Profile</a>
+                            <a href="#settings"><i class="fa fa-cog"></i> Settings</a>
+                            <a href="#history"><i class="fa fa-history"></i> History</a>
+                            <a href="#logout" class="logout"><i class="fa fa-sign-out"></i> Logout</a>
+                        </div>
                     </div>
-                <div class="table-row">
-                        <div class="table-cell">BALLPEN</div>
-                        <div class="table-cell">UNIVERSITY MALL</div>
-                        <div class="table-cell">Sep 13, 2022</div>
-                        <div class="table-cell">10:00 AM</div>
                 </div>
-        <!-- Add more rows as needed -->
+
+                <div class="header">
+                    <h1>Lost & Found</h1>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" placeholder="Search for lost or found items...">
+                </div>
+                <div class="report-item">
+                    <button class="lost-button" id="lost-button">Report Lost Items</button>
+                    <button class="found-button" id="found-button">Report Found Items</button>
+                </div>
             </div>
         </div>
+    </div>
+    
+
+    <!-- Item List Section -->
+    <!-- Replace the item-list section with this -->
+    <div class="items-container" id="item-list-container">
+    <h2>Recent Lost Items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Categories</th>
+                    <th>Description</th>
+                    <th>Block</th>
+                    <th>Room</th>
+                    <th>Status</th>
+                    <th>Cont Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                  
+            </tbody>
+        </table>
+    </div>   
+
+    <div class="items-container" id="item-list-container">
+    <h2>Recent Found Items</h2>
+        <table>
+            <thead>
+                <tr>
+                <th>Item Name</th>
+                <th>Categories</th>
+                <th>Description</th>
+                <th>Block</th>
+                <th>Room</th>
+                <th>Status</th>
+                <th>Cont Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                  
+            </tbody>
+        </table>
+    </div>        
         
-        
-        <div class="footer">
+    <div class="footer">
             <p>Contact us | Privacy Policy | Terms of Service</p>
             <p>&copy; 2023 Lost & Found</p>
-        </div>
     </div>
+    
 
     <!-- Chatbot Section -->
     <!-- Chatbot Section -->
@@ -67,7 +115,6 @@
 
     <!-- Floating Chatbot Button -->
     <button id="chatbot-btn" class="chatbot-btn">💬</button>
-
 
     <script src="script.js"></script>
     <script src="chatBot.js"></script>

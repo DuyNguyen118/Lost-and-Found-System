@@ -5,36 +5,144 @@ body {
     background-color: #f5f5f5;
 }
 
+.full-width-background {
+    width: 100%; /* Full width */
+    background-color: #EEE5DE; /* Solid yellow background */
+    padding: 20px 0; /* Reduced padding for less space */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 .container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 20px;
+    text-align: center; /* Center-align content */
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 2.5rem; /* Slightly smaller heading */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; /* Reduced margin below the heading */
 }
 
-.header {
+/* User Info Dropdown Styles */
+.User-info {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.user-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 50%;
+    background-color: #006600;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: white;
+    min-width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.user-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.user-avatar {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.user-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.user-header p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.user-menu {
+    padding: 10px 0;
+}
+
+.user-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.user-menu a:hover {
+    background-color: #f5f5f5;
+}
+
+.user-menu .logout {
+    color: #dc3545;
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+}
+
+/* Show dropdown when active */
+.user-dropdown.active {
+    display: block;
+}
+
+.search-box input {
+    width: 50%; /* Adjusted width for a compact look */
+    padding: 10px; /* Reduced padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.report-item {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Reduced space between buttons */
+    margin-top: 10px; /* Reduced margin above buttons */
 }
 
 .lost-button,
-.found-button,
-.view-items-button {
-    padding: 10px 20px;
+.found-button {
+    padding: 8px 20px; /* Reduced button size */
     border: none;
     border-radius: 5px;
-    background-color: #006600;
+    background-color: #006600; /* Green */
     color: #fff;
+    font-size: 1rem; /* Slightly smaller font */
     font-weight: bold;
     cursor: pointer;
-    font-size: medium;
+    transition: background-color 0.3s ease;
 }
+
+.lost-button:hover,
+.found-button:hover {
+    background-color: #004d00; /* Darker green on hover */
+}
+
 
 .report-item {
     display: flex;
@@ -53,13 +161,6 @@ h1 {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-.news-feed {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .categories {
@@ -90,43 +191,82 @@ h1 {
 }
 
 /* Remove or comment out the old .item-list styles */
-
-.table-list {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.table-header {
-    display: flex;
-    background-color: #006600;
-    color: white;
-    font-weight: bold;
-}
-
-.table-row {
-    display: flex;
-    border-bottom: 1px solid #eee;
-}
-
-.table-row:nth-child(even) {
-    background-color: #f5f5f5;
-}
-
-.header-cell, .table-cell {
-    flex: 1;
-    padding: 15px;
-    text-align: left;
-}
-
-.table-row:hover {
-    background-color: #f0f0f0;
+/* Table styling */
+.items-container {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .items-container h2 {
-    text-align: left;
+    text-align: center;
     color: #333;
     margin-bottom: 20px;
+    font-size: 1.8rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #006600;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #006600;
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+/* Zebra striping for rows */
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+    background-color: #f0f4f9;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .items-container {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th, td {
+        padding: 10px;
+        min-width: 120px;
+    }
 }

@@ -16,6 +16,20 @@ document.getElementById('found-button').addEventListener('click', () => {
     window.location.href = '/lad/src/main/Frontend/ReportFoundItems/report_found.html';
 });
 
+function toggleUserMenu() {
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('active');
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInside = dropdown.contains(event.target) || 
+                            event.target.closest('.user-btn');
+        if (!isClickInside) {
+            dropdown.classList.remove('active');
+        }
+    });
+}
+
 
 
 

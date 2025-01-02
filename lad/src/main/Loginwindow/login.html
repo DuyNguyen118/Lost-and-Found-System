@@ -7,33 +7,69 @@
     <link rel="stylesheet" href="loginstyle.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
-
     <div class="container">
-        <form action="">
-                <h1>Lost&Found</h1>
-                <div class="input-box">
+        <form onsubmit="return false;">
+            <h1>Lost&Found</h1>
+            <div class="input-box">
                 <input type="text" id="username" placeholder="Enter your username" required>
-                </div>
-
-                <div class="input-box">
+            </div>
+            <div class="input-box">
                 <input type="password" id="password" placeholder="Enter your password" required>
-                </div>
-
-                <div class="remember-forgot">
-                    <label><input type="checkbox">Remember me</label>
-                    <a href="#">Forgot password</a>
-                </div>
-
-                <button type="button" class="login-button" id="login-button">Login</button>
-
-                <div class="register" id="register">
-                    <p>Don't have an Account ? <a href="#">Register</a></p>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">Remember me</label>
+                <a href="#">Forgot password</a>
+            </div>
+            <button type="button" class="login-button" id="login-button">Login</button>
+            <div class="register" id="register">
+                <p>Don't have an Account? <a href="#">Register</a></p>
+            </div>
+        </form>
     </div>
-    <script src="loginscript.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginButton = document.getElementById('login-button');
+            
+            loginButton.addEventListener('click', async (e) => {
+                e.preventDefault();
+                console.log('Login clicked');
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                try {
+                    const response = await fetch('http://localhost:8080/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            username,
+                            password
+                        })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        localStorage.setItem('token', data.token);
+                        window.location.href = data.role === 'ADMIN' ? 
+                            '../AdminPage/Admin_UI.html' : 
+                            '../Frontend/MainPage/ReportUI.html';
+                    } else {
+                        alert('Invalid username or password');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Login error occurred');
+                }
+            });
+
+            document.getElementById('register').addEventListener('click', () => {
+                window.location.href = '/lad/src/main/Register/register.html';
+            });
+        });
+    </script>
 </body>
 </html>

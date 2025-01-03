@@ -6,54 +6,8 @@
     <title>Report Lost Items</title>
     <link rel="stylesheet" href="Report_Lost_UI.css">
 </head>
-<body>
-    <div class="Container">
-        <div class="header">
-            <h1>Report Lost Items</h1>
-        </div>
-        <div class="form-container">
-            <form id="lost-item-form">
-                <label for="item-name">Item Name:</label>
-                <input type="text" id="item-name" name="item-name" required>
-                <label for="categories">Categories</label>
-                <select id="categories" name="categories" required>
-                    <option value="" disabled selected>Select a category</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Clothings">Clothings</option>
-                    <option value="Boooks">Books</option>
-                    <option value="Accessories">Accessories</option>
-                    <option value="Stationery">Stationery</option>
-                    <option value="Others">Others</option>
-                </select>
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-                <label for="Block">Block:</label>
-                <select>
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                    <option value="Library">Library</option>
-                    <option value="Canteen">Canteen</option>
-                    <option value="Parking Area">Parking Area</option>
-                    <option value="Central Library">Central Library</option>
-                    <option value="ER Institute">ER Institute</option>
-                </select>
-                <label for="status">Item Status:</label>
-                <select id="status" name="status" required>
-                    <option value="LOST">Lost</option>
-                    <option value="FOUND">Found</option>
-                </select>
 
-                <label for="location">Room:</label>
-                <input type="text" id="location" name="location" required>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-        <div class="footer">
-            <p>&copy; 2023 Lost & Found</p>
-        </div>
-    </div>
-
-    <style>
+<style>
     * {
         margin: 0;
         padding: 0;
@@ -155,35 +109,94 @@
     }
     </style>
 
+<body>
+    <div class="Container">
+        <div class="header">
+            <h1>Report Lost Items</h1>
+        </div>
+        <div class="form-container">
+            <form id="lost-item-form">
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" name="itemName" required>
+
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="ELECTRONICS">Electronics</option>
+                    <option value="BOOKS">Books</option>
+                    <option value="CLOTHING">Clothing</option>
+                    <option value="ACCESSORIES">Accessories</option>
+                    <option value="STATIONERY">Stationery</option>
+                    <option value="OTHER">Other</option>
+                </select>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="location">Location:</label>
+                <select id="location" name="location" required>
+                    <option value="" disabled selected>Select a location</option>
+                    <option value="LIBRARY">Library</option>
+                    <option value="CANTEEN">Canteen</option>
+                    <option value="BLOCK_A1">A1</option>
+                    <option value="BLOCK_A2">A2</option>
+                    <option value="PARKING_AREA">Parking Area</option>
+                    <option value="CENTRAL_LIBRARY">Central Library</option>
+                    <option value="ER_INSTITUTE">ER Institute</option>
+                </select>
+
+                <label for="room">Room:</label>
+                <input type="text" id="room" name="room" required>
+
+                <label for="status">Item Status:</label>
+                <select id="status" name="status" required>
+                    <option value="" disabled selected>Select status</option>
+                    <option value="LOST">Lost</option>
+                    <option value="FOUND">Found</option>
+                </select>
+
+                <label for="contact-info">Contact Info:</label>
+                <input type="email" id="contact-info" name="contactInfo" required placeholder="example@example.com">
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 Lost & Found</p>
+        </div>
+    </div>
+
     <script>
         document.getElementById("lost-item-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+            e.preventDefault();
 
-    const formData = {
-        itemName: document.getElementById("item-name").value,
-        category: document.getElementById("categories").value,
-        description: document.getElementById("description").value,
-        location: document.getElementById("location").value,
-        contactInfo: "example@example.com" // Replace with dynamic data if available
-    };
+            const formData = {
+                itemName: document.getElementById("item-name").value,
+                category: document.getElementById("category").value,
+                description: document.getElementById("description").value,
+                location: document.getElementById("location").value,
+                room: document.getElementById("room").value,
+                status: document.getElementById("status").value,
+                contactInfo: document.getElementById("contact-info").value,
+            };
 
-    fetch("http://localhost:8080/api/items/report", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-    })
-        .then(response => {
-            if (response.ok) {
-                alert("Lost item reported successfully!");
-                document.getElementById("lost-item-form").reset();
-            } else {
-                alert("Failed to report the lost item.");
-            }
-        })
-        .catch(error => console.error("Error:", error));
-});
+            fetch("http://localhost:8080/api/items/report", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Lost item reported successfully!");
+                        document.getElementById("lost-item-form").reset();
+                    } else {
+                        alert("Failed to report the lost item.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
     </script>
 </body>
 </html>

@@ -156,34 +156,38 @@
                             <th>Item ID</th>
                             <th>Item Name</th>
                             <th>User Name</th>
+                            <th>Merit Points</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="return-table-body">
                         <!-- Sample Data -->
-                        <tr>
+                        <tr id="row-101">
                             <td>101</td>
                             <th>Water Bottle</th>
                             <td>Van Anh</td>
+                            <td class="merit-points">85</td>
                             <td>Pending</td>
                             <td>
-                                <button onclick="giveMeritPoints(101, 1)">Give Merit Points</button>
+                                <button onclick="giveMeritPoints(101)">Give Merit Points</button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="row-102">
                             <td>102</td>
                             <th>Iphone 12</th>
                             <td>Bao Duy</td>
+                            <td class="merit-points">80</td>
                             <td>Pending</td>
                             <td>
-                                <button onclick="giveMeritPoints(102, 2)">Give Merit Points</button>
+                                <button onclick="giveMeritPoints(102)">Give Merit Points</button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="row-103">
                             <td>103</td>
                             <th>Physics Book</th>
                             <td>Do Quyen</td>
+                            <td class="merit-points">75</td>
                             <td>Completed</td>
                             <td>
                                 <button onclick="alert('Merit points already awarded')">Give Merit Points</button>
@@ -191,7 +195,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </section>
+            </section>            
             
         </main>
     </div>
@@ -236,7 +240,7 @@
                         <td>${user.email}</td>
                         <td>${user.role}</td>
                         <td>
-                            <button onclick="deleteUser(${user.id})">Delete</button>
+                            <button onclick="deleteUser(${user.userId})">Delete</button>
                         </td>
                     </tr>
                 `).join('');
@@ -333,7 +337,7 @@
 
         window.approveItem = async function(itemId) {
             try {
-                const response = await fetch('http://localhost:8080/api/admin/approveItem', {
+                const response = await fetch(`http://localhost:8080/api/admin/approveItem/${itemId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -350,26 +354,46 @@
                 console.error('Error approving item:', error);
             }
         };
-
+/*
         window.giveMeritPoints = async function(itemId, userId) {
-            try {
-                const response = await fetch('http://localhost:8080/api/admin/meritPoints', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ itemId, userId })
-                });
-                if (response.ok) {
-                    alert('Merit points awarded successfully');
-                    fetchReturns();
-                } else {
-                    alert('Failed to award merit points');
-                }
-            } catch (error) {
-                console.error('Error awarding merit points:', error);
-            }
-        };
+    try {
+        const response = await fetch(`http://localhost:8080/api/admin/meritPoints/${itemId}/${userId}`, {
+            method: 'POST'
+        });
+        if (response.ok) {
+            alert('Merit points awarded successfully');
+            fetchReturns();
+        } else {
+            alert('Failed to award merit points');
+        }
+    } catch (error) {
+        console.error('Error awarding merit points:', error);
+    }
+};
+*/
+function giveMeritPoints(itemId) {
+    // Find the row and merit points cell
+    const row = document.getElementById('row-' + itemId);
+    const meritPointsCell = row.querySelector('.merit-points');
+
+    // Get current merit points from the cell
+    let currentPoints = parseInt(meritPointsCell.innerText);
+
+    // If currentPoints is a valid number, increment it
+    if (!isNaN(currentPoints)) {
+        let newPoints = currentPoints + 5; // Increment by 5 (or any number you want)
+
+        // Update the merit points in the table
+        meritPointsCell.innerText = newPoints;
+
+        // Disable the button and update its text
+        const button = row.querySelector('button');
+        button.disabled = true;
+        button.innerText = 'Merit Points Awarded';
+    } else {
+        console.error("Failed to parse merit points.");
+    }
+}
     });
     </script>
 </body>

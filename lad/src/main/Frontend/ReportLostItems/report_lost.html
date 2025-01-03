@@ -6,6 +6,62 @@
     <title>Report Lost Items</title>
     <link rel="stylesheet" href="Report_Lost_UI.css">
 </head>
+<body>
+    <div class="Container">
+        <div class="header">
+            <h1>Report Lost Items</h1>
+        </div>
+        <div class="form-container">
+            <form id="lost-item-form">
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" name="itemName" required>
+
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="ELECTRONICS">Electronics</option>
+                    <option value="BOOKS">Books</option>
+                    <option value="CLOTHING">Clothing</option>
+                    <option value="ACCESSORIES">Accessories</option>
+                    <option value="STATIONERY">Stationery</option>
+                    <option value="OTHER">Other</option>
+                </select>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="location">Location:</label>
+                <select id="location" name="location" required>
+                    <option value="" disabled selected>Select a location</option>
+                    <option value="LIBRARY">Library</option>
+                    <option value="CANTEEN">Canteen</option>
+                    <option value="BLOCK_A1">A1</option>
+                    <option value="BLOCK_A2">A2</option>
+                    <option value="PARKING_AREA">Parking Area</option>
+                    <option value="CENTRAL_LIBRARY">Central Library</option>
+                    <option value="ER_INSTITUTE">ER Institute</option>
+                </select>
+
+                <label for="room">Room:</label>
+                <input type="text" id="room" name="room" required>
+
+                <label for="status">Item Status:</label>
+                <select id="status" name="status" required>
+                    <option value="" disabled selected>Select status</option>
+                    <option value="LOST">Lost</option>
+                    <option value="FOUND">Found</option>
+                </select>
+
+                <label for="contact-info">Contact Info:</label>
+                <input type="email" id="contact-info" name="contactInfo" required placeholder="example@example.com">
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 Lost & Found</p>
+        </div>
+    </div>
 
 <style>
     * {

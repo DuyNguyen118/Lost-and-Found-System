@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User page</title>
-    <link rel="stylesheet" href="Userstyles.css">
+    <title>User Profile</title>
 </head>
 <body>
     <div class="return-button">
@@ -14,26 +13,143 @@
     <div class="container">
         <h1>User Profile</h1>
 
+        <!-- These elements will be dynamically updated -->
         <div class="info-item">
             <div class="info-label">Student ID</div>
-            <div class="info-value">ITCSIU23006</div>
+            <div class="info-value" id="student-id">Loading...</div>
         </div>
 
         <div class="info-item">
             <div class="info-label">Full Name</div>
-            <div class="info-value">Nguyễn Văn Bảo Duy</div>
+            <div class="info-value" id="full-name">Loading...</div>
         </div>
 
         <div class="info-item">
             <div class="info-label">Email</div>
-            <div class="info-value">baoduy.song@gmail.com</div>
+            <div class="info-value" id="email">Loading...</div>
         </div>
 
         <div class="merit-points">
             <div class="info-label">Merit Points</div>
-            <div class="info-value">10</div>
+            <div class="info-value" id="merit-points">Loading...</div>
         </div>
     </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            width: 420px;
+            background-color: white;
+            border: 1px solid rgba(255, 255, 255, .2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .container h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 28px;
+            position: relative;
+        }
+
+        .container h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        .info-item {
+            background-color: #f8f9fa;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .merit-points {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e8f5fe;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .merit-points .info-value {
+            color: #3498db;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .return-button button {
+            position: absolute;
+            top: 20px;
+            left:20px;
+            border: none;
+            background: #3498db; /* Button background color */
+            color: white; /* Text color */
+            padding: 8px 12px; /* Adjust padding */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Spacing between arrow and text */
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .return-button button:before {
+            content: '←';
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        .return-button button:hover {
+            background: #2980b9; /* Darker blue on hover */
+            transform: translateX(-3px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .return-button button:active {
+            transform: translateX(-1px);
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+        }
+
+    </style>
+    
     <script src="Usersript.js"></script>
 </body>
 </html>

@@ -97,7 +97,6 @@
         td {
             background-color: #e8f5e9;
         }
-
     </style>
 </head>
 <body>
@@ -155,16 +154,45 @@
                     <thead>
                         <tr>
                             <th>Item ID</th>
+                            <th>Item Name</th>
                             <th>User Name</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="return-table-body">
-                        <!-- Return data fetched dynamically -->
+                        <!-- Sample Data -->
+                        <tr>
+                            <td>101</td>
+                            <th>Water Bottle</th>
+                            <td>Van Anh</td>
+                            <td>Pending</td>
+                            <td>
+                                <button onclick="giveMeritPoints(101, 1)">Give Merit Points</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <th>Iphone 12</th>
+                            <td>Bao Duy</td>
+                            <td>Pending</td>
+                            <td>
+                                <button onclick="giveMeritPoints(102, 2)">Give Merit Points</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <th>Physics Book</th>
+                            <td>Do Quyen</td>
+                            <td>Completed</td>
+                            <td>
+                                <button onclick="alert('Merit points already awarded')">Give Merit Points</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
+            
         </main>
     </div>
 
@@ -207,7 +235,9 @@
                         <td>${user.name}</td>
                         <td>${user.email}</td>
                         <td>${user.role}</td>
-                        <td><button onclick="handleUserAction(${user.id})">Edit</button></td>
+                        <td>
+                            <button onclick="deleteUser(${user.id})">Delete</button>
+                        </td>
                     </tr>
                 `).join('');
             } catch (error) {
@@ -232,7 +262,10 @@
                         <td>${item.category}</td>
                         <td>${item.location}</td>
                         <td>${item.contactInfo}</td>
-                        <td><button onclick="handleItemAction(${item.itemId})">View</button></td>
+                        <td>
+                            <button onclick="deleteItem(${item.itemId})">Delete</button>
+                            <button onclick="approveItem(${item.itemId})">Approve</button>
+                        </td>
                     </tr>
                 `).join('');
             } catch (error) {
@@ -240,7 +273,7 @@
                 console.error(error);
             }
         }
-
+/*
         async function fetchReturns() {
             const returnTableBody = document.getElementById('return-table-body');
             returnTableBody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
@@ -254,7 +287,7 @@
                         <td>${returnItem.userName}</td>
                         <td>${returnItem.status}</td>
                         <td>
-                            <button onclick="approveReturn(${returnItem.itemId}, ${returnItem.userId})">Approve</button>
+                            <button onclick="giveMeritPoints(${returnItem.itemId}, ${returnItem.userId})">Give Merit Points</button>
                         </td>
                     </tr>
                 `).join('');
@@ -263,37 +296,79 @@
                 console.error(error);
             }
         }
-
-        window.approveReturn = async function(itemId, userId) {
+*/
+        window.deleteUser = async function(userId) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
             try {
-                const response = await fetch('http://localhost:8080/api/admin/approveReturn', {
+                const response = await fetch(`http://localhost:8080/api/admin/users/${userId}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    alert('User deleted successfully');
+                    fetchUsers();
+                } else {
+                    alert('Failed to delete user');
+                }
+            } catch (error) {
+                console.error('Error deleting user:', error);
+            }
+        };
+
+        window.deleteItem = async function(itemId) {
+            if (!confirm('Are you sure you want to delete this item?')) return;
+            try {
+                const response = await fetch(`http://localhost:8080/api/admin/items/${itemId}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    alert('Item deleted successfully');
+                    fetchItems();
+                } else {
+                    alert('Failed to delete item');
+                }
+            } catch (error) {
+                console.error('Error deleting item:', error);
+            }
+        };
+
+        window.approveItem = async function(itemId) {
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/approveItem', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ itemId })
+                });
+                if (response.ok) {
+                    alert('Item approved successfully');
+                    fetchItems();
+                } else {
+                    alert('Failed to approve item');
+                }
+            } catch (error) {
+                console.error('Error approving item:', error);
+            }
+        };
+
+        window.giveMeritPoints = async function(itemId, userId) {
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/meritPoints', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ itemId, userId })
                 });
-
                 if (response.ok) {
-                    alert('Return approved, and merit points updated.');
-                    fetchReturns(); // Refresh the returns table
+                    alert('Merit points awarded successfully');
+                    fetchReturns();
                 } else {
-                    const errorData = await response.json();
-                    alert(`Error: ${errorData.message}`);
+                    alert('Failed to award merit points');
                 }
             } catch (error) {
-                console.error('Error approving return:', error);
-                alert('An error occurred while approving the return.');
+                console.error('Error awarding merit points:', error);
             }
-        };
-
-        // Placeholder actions
-        window.handleUserAction = function(userId) {
-            alert(`User action for ID: ${userId}`);
-        };
-
-        window.handleItemAction = function(itemId) {
-            alert(`Item action for ID: ${itemId}`);
         };
     });
     </script>

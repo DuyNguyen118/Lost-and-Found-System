@@ -50,14 +50,6 @@ document.getElementById('UserProfile').addEventListener('click', async (e) => {
     window.location.href = '/Frontend/User/User.html';
 });
 
-document.getElementById('found-button').addEventListener('click', () => {
-    console.log('Redirecting to report-found.html');
-    form = document.createElement('div')
-    script = ""
-    form.innerHTML = ""
-    window.location.href = '/Frontend/ReportFoundItems/report_found.html';
-});
-
 function toggleUserMenu() {
     const dropdown = document.getElementById('userDropdown');
     dropdown.classList.toggle('active');

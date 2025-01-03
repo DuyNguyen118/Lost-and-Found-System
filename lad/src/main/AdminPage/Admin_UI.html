@@ -3,41 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Interface</title>
-    <link rel="stylesheet" href="AdminUIstyles.css">
+    <title>Admin Dashboard - Lost and Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
 
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            height: 100vh;
+            background-color: #f0f8f0;
+        }
+
+        .admin-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            background-color: #e8f5e9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background-color: #2e7d32;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .admin-sidebar h1 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .admin-sidebar button {
+            width: 100%;
+            padding: 12px;
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .admin-sidebar button:hover {
+            background-color: #1b5e20;
+        }
+
+        .admin-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #c8e6c9;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #a5d6a7;
+        }
+
+        td {
+            background-color: #e8f5e9;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h1>Lost & Found</h1>
-        <button id="user-btn">User</button>
-        <button id="merit-btn">Merit Point</button>
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <h1>Admin Panel</h1>
+            <button id="manage-users">Users</button>
+            <button id="view-items">Items</button>
+            <button id="manage-returns">Approve Returns</button>
+        </aside>
+
+        <main class="admin-content">
+            <section id="users-panel" class="panel">
+                <h2>User Management</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>StudentId</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                        <!-- User data fetched dynamically -->
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="items-panel" class="panel">
+                <h2>Item Management</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Item Name</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Contact Info</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="item-table-body">
+                        <!-- Item data fetched dynamically -->
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="returns-panel" class="panel">
+                <h2>Approve Returns</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>User Name</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="return-table-body">
+                        <!-- Return data fetched dynamically -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
     </div>
 
-    <div class="content">
-        <div id="user-panel" class="panel">
-            <h2>User Management</h2>
-            <button class="edit-button">Edit</button>
-            <table>
-                <thead>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const usersPanel = document.getElementById('users-panel');
+        const itemsPanel = document.getElementById('items-panel');
+        const returnsPanel = document.getElementById('returns-panel');
+
+        document.getElementById('manage-users').addEventListener('click', () => {
+            showPanel(usersPanel);
+            fetchUsers();
+        });
+
+        document.getElementById('view-items').addEventListener('click', () => {
+            showPanel(itemsPanel);
+            fetchItems();
+        });
+
+        document.getElementById('manage-returns').addEventListener('click', () => {
+            showPanel(returnsPanel);
+            fetchReturns();
+        });
+
+        function showPanel(panel) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            panel.classList.add('active');
+        }
+
+        async function fetchUsers() {
+            const userTableBody = document.getElementById('user-table-body');
+            userTableBody.innerHTML = '<tr><td colspan="5">Loading...</td></tr>';
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/users');
+                if (!response.ok) throw new Error('Failed to fetch users');
+                const users = await response.json();
+                userTableBody.innerHTML = users.map(user => `
                     <tr>
-                        <th>Account</th>
-                        <th>Student ID</th>
-                        <th>Student Name</th>
-                        <th>Merit Point</th>
+                        <td>${user.studentId}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.role}</td>
+                        <td><button onclick="handleUserAction(${user.id})">Edit</button></td>
                     </tr>
-                </thead>
-                <tbody>
-                  
-                </tbody>
-            </table>
-        </div>
+                `).join('');
+            } catch (error) {
+                userTableBody.innerHTML = '<tr><td colspan="5">Error loading users</td></tr>';
+                console.error(error);
+            }
+        }
 
-        <div id="merit-panel" class="panel active">
-            <h2>Merit Point Management</h2>
-            <button class="edit-button">Edit</button>
-        </div>
-    </div>
-    <script src="Adminscript.js"></script>
+        async function fetchItems() {
+            const itemTableBody = document.getElementById('item-table-body');
+            itemTableBody.innerHTML = '<tr><td colspan="8">Loading...</td></tr>';
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/items');
+                if (!response.ok) throw new Error('Failed to fetch items');
+                const items = await response.json();
+                itemTableBody.innerHTML = items.map(item => `
+                    <tr>
+                        <td>${item.itemId}</td>
+                        <td>${item.itemName}</td>
+                        <td>${item.status}</td>
+                        <td>${item.description}</td>
+                        <td>${item.category}</td>
+                        <td>${item.location}</td>
+                        <td>${item.contactInfo}</td>
+                        <td><button onclick="handleItemAction(${item.itemId})">View</button></td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                itemTableBody.innerHTML = '<tr><td colspan="8">Error loading items</td></tr>';
+                console.error(error);
+            }
+        }
+
+        async function fetchReturns() {
+            const returnTableBody = document.getElementById('return-table-body');
+            returnTableBody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/approveReturn');
+                if (!response.ok) throw new Error('Failed to fetch returns');
+                const returns = await response.json();
+                returnTableBody.innerHTML = returns.map(returnItem => `
+                    <tr>
+                        <td>${returnItem.itemId}</td>
+                        <td>${returnItem.userName}</td>
+                        <td>${returnItem.status}</td>
+                        <td>
+                            <button onclick="approveReturn(${returnItem.itemId}, ${returnItem.userId})">Approve</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                returnTableBody.innerHTML = '<tr><td colspan="4">Error loading returns</td></tr>';
+                console.error(error);
+            }
+        }
+
+        window.approveReturn = async function(itemId, userId) {
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/approveReturn', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ itemId, userId })
+                });
+
+                if (response.ok) {
+                    alert('Return approved, and merit points updated.');
+                    fetchReturns(); // Refresh the returns table
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error approving return:', error);
+                alert('An error occurred while approving the return.');
+            }
+        };
+
+        // Placeholder actions
+        window.handleUserAction = function(userId) {
+            alert(`User action for ID: ${userId}`);
+        };
+
+        window.handleItemAction = function(itemId) {
+            alert(`Item action for ID: ${itemId}`);
+        };
+    });
+    </script>
 </body>
 </html>

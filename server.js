@@ -24,7 +24,7 @@ app.get('/register', (req, res) => {
 });
 
 // Default route
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'lad/src/main/Loginwindow/login.html'));
 });
 

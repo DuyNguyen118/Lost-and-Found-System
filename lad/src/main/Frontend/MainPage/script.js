@@ -6,6 +6,7 @@ function showSection(sectionId) {
     document.getElementById(sectionId).classList.remove('hidden');
 }
 
+
 // Call this function to add a new item
 
 document.getElementById('lost-button').addEventListener('click', async (e) => {

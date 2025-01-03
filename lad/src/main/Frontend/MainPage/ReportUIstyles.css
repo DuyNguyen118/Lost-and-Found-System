@@ -269,4 +269,52 @@ tbody tr:hover {
         padding: 10px;
         min-width: 120px;
     }
+    .filterBox {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        margin: 1rem auto;
+        max-width: 1200px;
+    }
+    
+    .filterBox select {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: white;
+        min-width: 200px;
+        font-size: 14px;
+    }
+    
+    .filterBox select:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+    }
+    
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+    
+    .status-badge.lost {
+        background-color: #fee2e2;
+        color: #dc2626;
+    }
+    
+    .status-badge.found {
+        background-color: #dcfce7;
+        color: #16a34a;
+    }
+    
+    .no-items {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+        font-style: italic;
+    }
 }

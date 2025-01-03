@@ -46,6 +46,35 @@
             <p>&copy; 2023 Lost & Found</p>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("lost-item-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = {
+        itemName: document.getElementById("item-name").value,
+        category: document.getElementById("categories").value,
+        description: document.getElementById("description").value,
+        location: document.getElementById("location").value,
+        contactInfo: "example@example.com" // Replace with dynamic data if available
+    };
+
+    fetch("http://localhost:8080/api/items/report", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Lost item reported successfully!");
+                document.getElementById("lost-item-form").reset();
+            } else {
+                alert("Failed to report the lost item.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+});
+    </script>
 </body>
 </html>

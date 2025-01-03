@@ -38,19 +38,54 @@ const newItem = {
 // Call this function to add a new item
 addLostItem(newItem);
 
-document.getElementById('lost-button').addEventListener('click', () => {
+document.getElementById('lost-button').addEventListener('click', async (e) => {
+    e.preventDefault()
     console.log('Redirecting to report-lost.html');
-    window.location.href = '/lad/src/main/Frontend/ReportLostItems/report_lost.html';
+    window.location.href = '/Frontend/ReportLostItems/report_lost.html';
 });
 
-document.getElementById('UserProfile').addEventListener('click', () => {
+document.getElementById("lost-item-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = {
+        itemName: document.getElementById("item-name").value,
+        category: document.getElementById("categories").value,
+        description: document.getElementById("description").value,
+        location: document.getElementById("location").value,
+        contactInfo: "example@example.com" // Replace with dynamic data if available
+    };
+
+    fetch("/api/items/report-lost", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Lost item reported successfully!");
+                document.getElementById("lost-item-form").reset();
+            } else {
+                alert("Failed to report the lost item.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+});
+
+
+document.getElementById('UserProfile').addEventListener('click', async (e) => {
+    e.preventDefault()
     console.log('Redirecting to User.html');
-    window.location.href = '/lad/src/main/Frontend/User/User.html';
+    window.location.href = '/Frontend/User/User.html';
 });
 
 document.getElementById('found-button').addEventListener('click', () => {
     console.log('Redirecting to report-found.html');
-    window.location.href = '/lad/src/main/Frontend/ReportFoundItems/report_found.html';
+    form = document.createElement('div')
+    script = ""
+    form.innerHTML = ""
+    window.location.href = '/Frontend/ReportFoundItems/report_found.html';
 });
 
 function toggleUserMenu() {

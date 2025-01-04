@@ -21,6 +21,12 @@ document.getElementById('UserProfile').addEventListener('click', async (e) => {
     window.location.href = '/Frontend/User/User.html';
 });
 
+document.getElementById('Logout').addEventListener('click', async (e) => {
+    e.preventDefault()
+    console.log('Redirecting to User.html');
+    window.location.href = '/LoginWindow/login.html';
+});
+
 function toggleUserMenu() {
     const dropdown = document.getElementById('userDropdown');
     dropdown.classList.toggle('active');

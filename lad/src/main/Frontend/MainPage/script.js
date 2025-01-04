@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${item.category}</td>
                         <td>${item.description}</td>
                         <td>${item.location}</td>
-                        <td>${item.room}</td>
+                        <td>${item.room ? item.room.roomNumber : ''}</td>
                         <td>${item.status}</td>
                         <td>${item.contactInfo}</td>
                     `;

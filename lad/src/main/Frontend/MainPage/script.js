@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${item.location}</td>
                         <td>${item.room ? item.room.roomNumber : ''}</td>
                         <td>${item.status}</td>
-                        <td>${item.reportDate}</td>
                         <td>${item.contactInfo}</td>
                     `;
 

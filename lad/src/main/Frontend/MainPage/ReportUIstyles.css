@@ -318,3 +318,61 @@ tbody tr:hover {
         font-style: italic;
     }
 }
+
+.filterBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem; /* Add more padding for a spacious look */
+    background-color: #ffffff; /* Bright background for contrast */
+    border-radius: 10px; /* Smooth rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 2rem auto; /* Space around the filter box */
+    max-width: 1200px; /* Restrict the maximum width for better layout */
+    border: 1px solid #ddd; /* Add a light border for separation */
+}
+
+/* Styling for dropdown filters */
+.filterBox select {
+    padding: 0.5rem 1rem; /* Comfortable padding inside the dropdown */
+    border: 1px solid #ccc; /* Neutral border color */
+    border-radius: 8px; /* Rounded corners for dropdowns */
+    background-color: #f9f9f9; /* Light gray background */
+    min-width: 200px; /* Set a minimum width for consistent dropdowns */
+    font-size: 14px; /* Standard font size */
+    transition: all 0.3s ease; /* Smooth transition for hover and focus effects */
+}
+
+/* Hover effect for dropdown filters */
+.filterBox select:hover {
+    border-color: #007bff; /* Highlight border on hover */
+    background-color: #f0f8ff; /* Slightly lighter background on hover */
+}
+
+/* Focus effect for dropdown filters */
+.filterBox select:focus {
+    outline: none;
+    border-color: #006600; /* Green highlight for focus */
+    box-shadow: 0 0 0 3px rgba(0, 102, 0, 0.25); /* Focus glow */
+}
+
+/* Add spacing for better alignment */
+.filterBox select:not(:last-child) {
+    margin-right: 1rem; /* Space between filters */
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    .filterBox {
+        flex-direction: column; /* Stack filters vertically on smaller screens */
+        gap: 1rem; /* Add space between elements */
+        padding: 1rem;
+    }
+
+    .filterBox select {
+        width: 100%; /* Make dropdowns full-width */
+        min-width: unset; /* Remove minimum width */
+    }
+}

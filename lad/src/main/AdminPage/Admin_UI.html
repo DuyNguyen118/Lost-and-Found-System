@@ -105,6 +105,7 @@
             <button id="manage-users">Users</button>
             <button id="view-items">Items</button>
             <button id="manage-returns">Approve Returns</button>
+            <button id="Log-out">Log out</button>
         </aside>
 
         <main class="admin-content">
@@ -409,6 +410,12 @@ function giveMeritPoints(itemId) {
         console.error("Failed to parse merit points.");
     }
 }
+
+    document.getElementById('Log-out').addEventListener('click', async (e) => {
+        e.preventDefault()
+        console.log('Redirecting to User.html');
+        window.location.href = '/LoginWindow/login.html';
+    });
     });
     </script>
 </body>
